@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="improvedcontact_improvedcontact_email_email_template_field_id" label="Email template for reply" file="reply_to_customer.html" type="html" module="Sapiha_Improvedcontact" area="frontend" />
+</config>

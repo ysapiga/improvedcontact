@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Sapiha_Improvedcontact::improvedcontact" title="Contact Info" translate="title" module="Sapiha_Improvedcontact" sortOrder="20" resource="Sapiha_Improvedcontact::improvedcontact"/>
+        <add id="Sapiha_Improvedcontact::contact" title="Contact Information" translate="title" module="Sapiha_Improvedcontact" parent="Sapiha_Improvedcontact::improvedcontact" action="adminhtml/improvedcontact/index" sortOrder="21" resource="Sapiha_Import::contact"/>
+    </menu>
+</config>

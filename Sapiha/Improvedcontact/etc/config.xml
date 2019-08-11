@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <improvedcontact>
+            <improvedcontact_email>
+                <email_template_field_id>improvedcontact_improvedcontact_email_email_template_field_id</email_template_field_id>
+                <identity>general</identity>
+            </improvedcontact_email>
+        </improvedcontact>
+    </default>
+</config>

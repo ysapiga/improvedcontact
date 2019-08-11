@@ -1,0 +1,27 @@
+<!--@subject Subject Of your email  @-->
+<!--@vars {
+"var this.getUrl($store, 'admin')":"Warehouse Account URL",
+"var customer.email":"Customer Email",
+"var customer.name":"Customer Name"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+<table>
+    <tr class="email-intro">
+        <td>
+            <p>{{trans "Hello!"}} {{trans "%customer" customer=$customer}}</p>
+        </td>
+    </tr>
+    <tr class="email-summary">
+        <td>
+            <h1>{{trans 'Thak you for you email. Here is our answer' }}</h1>
+            <p>{{trans "%message," message=$message}}</p>
+        </td>
+    </tr>
+    <tr class="email-information">
+        <td>
+            <h3>{{trans "Best Regards from candidate"}}</h3>
+        </td>
+    </tr>
+</table>
+{{template config_path="design/email/footer_template"}}

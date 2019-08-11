@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Sapiha\Improvedcontact\Block\ReplyOnMessage" name="adminhtml.block.improvedcontact.edit" template="Sapiha_Improvedcontact::reply_on_message.phtml">
+                <block class="Sapiha\Improvedcontact\Block\Edit\ReplyForm" name="adminhtml.block.improvedcontact.reply"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

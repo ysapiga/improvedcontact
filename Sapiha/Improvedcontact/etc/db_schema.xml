@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="customer_feedback" resource="default" engine="innodb" comment="Customers Feedback archive">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Contact ID"/>
+        <column xsi:type="varchar" name="name" length="32" nullable="false" default="" comment="Sender Email"/>
+        <column xsi:type="varchar" name="email" length="32" nullable="false" default="" comment="Sender Email"/>
+        <column xsi:type="varchar" name="phone" length="32" nullable="true" comment="Sender phone number"/>
+        <column xsi:type="text" name="message" nullable="false"  comment="Sharing encrypted code"/>
+        <column xsi:type="boolean" name="is_replied" nullable="false" default="false" comment="is message was replied flag"/>
+        <index referenceId="FEEDBACK_ID" indexType="btree">
+            <column name="id"/>
+        </index>
+    </table>
+</schema>

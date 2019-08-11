@@ -1,0 +1,41 @@
+Back,Back
+Save,Save
+Delete,Delete
+"Are you sure you want to do this?","Are you really wanna do it?"
+"Feedback information","Feedback information"
+"Customer Name","Customer Name"
+"Customer Email","Customer Email"
+phone,phone
+message,message
+"Is message replied","Is message replied"
+No,No
+Yes,Yes
+Reply,Reply
+"Reply on message","Reply on message"
+Subject,Subject
+"Message to customer","Message to customer"
+"The contact message was successfully deleted.","The contact message was successfully deleted."
+"Cannot delete entity","Cannot delete entity"
+"Cannot load entity","Cannot load entity"
+"The contact message was successfully updated.","The contact message was successfully updated."
+"Something went wrong.","Something went wrong."
+"Cannot delete category with id %1","Cannot delete category with id %1"
+Hello!,Hello!
+%customer,%customer
+"Thak you for you email. Here is our answer","Thak you for you email. Here is our answer"
+"%message,","%message,"
+"Best Regards from candidate","Best Regards from candidate"
+"Error happened","Error happened"
+"Real Error happened","Real Error happened"
+"Improved Contact","Improved Contact"
+"Contact Info","Contact Info"
+"Contact Information","Contact Information"
+"Improved contact","Improved contact"
+"Email configurations","Email configurations"
+"Select email template","Select email template"
+"Email Sender","Email Sender"
+ID,ID
+Name,Name
+Email,Email
+Phone,Phone
+Message,Message
