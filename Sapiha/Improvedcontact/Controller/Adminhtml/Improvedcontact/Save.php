@@ -8,7 +8,7 @@ use Magento\Framework\Controller\ResultInterface;
 use Sapiha\Improvedcontact\Model\ContactRepository;
 
 /**
- * Class Edit
+ * Class Save
  * @package Sapiha\Improvedcontact\Controller\Adminhtml\Improvedcontact
  */
 class Save extends Action
@@ -37,6 +37,7 @@ class Save extends Action
         $contactId = $this->getRequest()->getParam('id');
         $isReplied = $this->getRequest()->getParam('is_replied');
         if ($contactId && $isReplied !== null) {
+
             try {
                 $contact = $this->contactRepository->getById((int)$contactId);
                 $contact->setIsReplied($isReplied);

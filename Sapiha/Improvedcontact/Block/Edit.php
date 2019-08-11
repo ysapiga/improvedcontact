@@ -2,13 +2,16 @@
 
 namespace Sapiha\Improvedcontact\Block;
 
+use Magento\Backend\Block\Widget\Container;
+use Magento\Backend\Block\Widget\Context;
+use Magento\Backend\Helper\Data;
 use Sapiha\Improvedcontact\Block\Edit\Form;
 
 /**
  * Class Edit
  * @package Sapiha\Improvedcontact\Block
  */
-class Edit extends \Magento\Backend\Block\Widget\Container
+class Edit extends Container
 {
     /**
      * Part for building some blocks names
@@ -20,19 +23,19 @@ class Edit extends \Magento\Backend\Block\Widget\Container
     /**
      * Adminhtml data
      *
-     * @var \Magento\Backend\Helper\Data
+     * @var Data
      */
     protected $_adminhtmlData = null;
 
     /**
      * Edit constructor.
-     * @param \Magento\Backend\Block\Widget\Context $context
-     * @param \Magento\Backend\Helper\Data $adminhtmlData
+     * @param Context $context
+     * @param Data $adminhtmlData
      * @param array $data
      */
     public function __construct(
-        \Magento\Backend\Block\Widget\Context $context,
-        \Magento\Backend\Helper\Data $adminhtmlData,
+        Context $context,
+        Data $adminhtmlData,
         array $data = []
     ) {
         $this->_adminhtmlData = $adminhtmlData;
@@ -44,7 +47,7 @@ class Edit extends \Magento\Backend\Block\Widget\Container
     /**
      * Prepare layout
      *
-     * @return \Magento\Backend\Block\Widget\Container
+     * @return Container
      */
     protected function _prepareLayout()
     {

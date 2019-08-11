@@ -34,12 +34,12 @@ class Edit extends Action
      */
     public function execute()
     {
-
         $this->_view->loadLayout();
         $contactId = $this->getRequest()->getParam('id');
         $this->_setActiveMenu('Sapiha_Improvedcontact::improvedcontact');
         if($contactId) {
             $contact = null;
+
             try {
                 $contact = $this->contactRepository->getById((int)$contactId);
             } catch (\Exception $exception) {
