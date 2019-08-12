@@ -14,7 +14,8 @@ use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 
 /**
- * Custom Module Email helper
+ * Class Email
+ * @package Sapiha\Improvedcontact\Helper
  */
 class Email extends AbstractHelper
 {

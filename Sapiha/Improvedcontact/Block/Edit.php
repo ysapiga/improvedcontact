@@ -39,9 +39,8 @@ class Edit extends Container
         array $data = []
     ) {
         $this->_adminhtmlData = $adminhtmlData;
+        
         parent::__construct($context, $data);
-
-        $this->buttonList->update('save', 'id', 'runImport');
     }
 
     /**
