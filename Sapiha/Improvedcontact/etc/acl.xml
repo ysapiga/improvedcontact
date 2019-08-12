@@ -6,7 +6,7 @@
         <resources>
             <resource id="Magento_Backend::admin">
                 <resource id="Sapiha_Improvedcontact::improvedcontact" title="Improve Contact managment">
-                    <resource id="Sapiha_Import::contact" title="Improved Contact" translate="title" sortOrder="20"/>
+                    <resource id="Sapiha_Improvedcontact::contact" title="Improved Contact" translate="title" sortOrder="20"/>
                 </resource>
             </resource>
         </resources>
