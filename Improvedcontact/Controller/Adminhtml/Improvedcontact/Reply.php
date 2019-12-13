@@ -5,7 +5,7 @@ namespace Sapiha\Improvedcontact\Controller\Adminhtml\Improvedcontact;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\JsonFactory;
-use Sapiha\Improvedcontact\Helper\Email;
+use Sapiha\Improvedcontact\Sender\Email;
 
 class Reply extends Action
 {
@@ -22,8 +22,8 @@ class Reply extends Action
         JsonFactory $resultJsonFactory,
         Email $sender
     ) {
-        $this->sender = $sender;
         $this->resultJsonFactory = $resultJsonFactory;
+        $this->sender = $sender;
 
         parent::__construct($context);
     }
@@ -33,17 +33,14 @@ class Reply extends Action
      */
     public function execute()
     {
-        $result = $this->resultJsonFactory->create();
         $params = $this->getRequest()->getParams();
+        $result = $this->resultJsonFactory->create();
 
-            try {
-                $this->sender->sendMail($params);
-            } catch (\Exception $e) {
-                $result->setData([
-                    'error' => 1,
-                    'message' => $e->getMessage(),
-                ]);
-            }
+        try {
+            $this->sender->sendMail($params);
+        } catch (\Exception $e) {
+            $result->setData(['error' => 1, 'message' => $e->getMessage()]);
+        }
 
         return $result;
     }

@@ -14,13 +14,13 @@
             alert
         ) {
             var options = {
-                type: 'popup',
+                type: 'slide',
                 responsive: true,
                 innerScroll: true,
                 title: 'Reply on customer message',
                 buttons: [{
                     text: $.mage.__('Reply'),
-                    class: 'button',
+                    class: 'button primary',
                     click: function () {
                         disabled = $('#customer_email').removeAttr('disabled');
                         form = $(".modal-content #reply_form");
