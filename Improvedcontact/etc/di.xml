@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Sapiha\Improvedcontact\Api\ContactRepositoryInterface" type="Sapiha\Improvedcontact\Model\ContactRepository"/>
     <preference for="Sapiha\Improvedcontact\Api\Data\ContactInterface" type="Sapiha\Improvedcontact\Model\Contact"/>

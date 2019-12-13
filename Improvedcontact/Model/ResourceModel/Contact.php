@@ -1,12 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace Sapiha\Improvedcontact\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 /**
- * Class Contact
- * @package Sapiha\Improvedcontact\Model\ResourceModel
+ * Resource modelr for \Sapiha\Improvedcontact\Model\Contact entity
  */
 class Contact extends AbstractDb
 {

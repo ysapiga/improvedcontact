@@ -1,18 +1,22 @@
 <?php
+declare(strict_types=1);
 
 namespace Sapiha\Improvedcontact\Controller\Adminhtml\Improvedcontact;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Sapiha\Improvedcontact\Sender\Email;
 
+/**
+ * Class represent action responsible for message replying
+ */
 class Reply extends Action
 {
     const ADMIN_RESOURCE = 'Sapiha_Improvedcontact::contact';
 
     /**
-     * Reply constructor.
      * @param Context $context
      * @param JsonFactory $resultJsonFactory
      * @param Email $sender
@@ -29,7 +33,7 @@ class Reply extends Action
     }
 
     /**
-     * @inheritdoc
+     * @return Json
      */
     public function execute()
     {

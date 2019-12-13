@@ -1,38 +1,39 @@
 <?php
+declare(strict_types=1);
 
 namespace Sapiha\Improvedcontact\Model;
 
+use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\StateException;
 use Sapiha\Improvedcontact\Api\ContactRepositoryInterface;
 use Sapiha\Improvedcontact\Api\Data\ContactInterface;
+use Sapiha\Improvedcontact\Model\ResourceModel\Contact as ContactResource;
 
 class ContactRepository implements ContactRepositoryInterface
 {
     /** @var ContactFactory */
     private $contactFactory;
 
+    /** @var ContactResource */
+    private $contactResourceFactory;
+
     /**
-     * ContactRepository constructor.
-     *
-     * @param \Sapiha\Improvedcontact\Model\ContactFactory $contactFactory
+     * @param ContactResource $contactResourceFactory
+     * @param ContactFactory $contactFactory
      */
-    public function __construct(
-        ContactFactory $contactFactory
-    ) {
+    public function __construct(ContactResource $contactResourceFactory, ContactFactory $contactFactory)
+    {
         $this->contactFactory = $contactFactory;
+        $this->contactResourceFactory = $contactResourceFactory;
     }
 
     /**
-     * Load entity by id
-     *
-     * @param int $id
-     * @return ContactInterface|Contact
-     * @throws NoSuchEntityException
+     * @inheritdoc
      */
-    public function getById($id)
+    public function getById(int $id): ContactInterface
     {
-        /** @var Contact $contact */
+        /** @var ContactInterface $contact */
         $contact = $this->contactFactory->create();
         $contact->load($id);
         if (!$contact->getId()) {
@@ -43,29 +44,42 @@ class ContactRepository implements ContactRepositoryInterface
     }
 
     /**
-     * Save entity
-     *
-     * @param ContactInterface $contact
-     * @return ContactRepositoryInterface|void
+     * @inheritdoc
      */
-    public function save(ContactInterface $contact)
+    public function save(ContactInterface $contact): ContactInterface
     {
-        /** @var Contact */
-        $contact->save();
+        /** @var ContactResource $contactResource */
+        $contactResource = $this->contactResourceFactory->create();
+
+        try {
+            $contactResource->save($contact);
+        } catch (\Exception $e) {
+            throw new CouldNotSaveException('The contact ca not be saved');
+        }
+
+        return $this->getById((int)$contact->getId());
     }
 
     /**
-     * Delete entity
-     *
-     * @param ContactInterface $contact
+     * @inheritdoc
      */
-    public function delete(ContactInterface $contact)
+    public function delete(ContactInterface $contact): void
     {
+        /** @var ContactResource $contactResource */
+        $contactResource = $this->contactResourceFactory->create();
         try {
-            $contact->delete();
+            $contactResource->delete($contact);
         } catch (\Exception $e) {
-            throw new StateException(
-                __('Cannot delete category with id %1', $contact->getId()), $e);
+            throw new StateException(__('Cannot delete category with id %1', $contact->getId()), $e);
         }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function deleteById(int $id): void
+    {
+        $contact = $this->getById($id);
+        $this->delete($contact);
     }
 }

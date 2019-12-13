@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Sapiha\Improvedcontact\Controller\Adminhtml\Improvedcontact;
 
@@ -8,22 +9,18 @@ use Magento\Framework\Controller\ResultInterface;
 use Sapiha\Improvedcontact\Model\ContactRepository;
 
 /**
- * Class Save
- * @package Sapiha\Improvedcontact\Controller\Adminhtml\Improvedcontact
+ * Class represent save entity action
  */
 class Save extends Action
 {
     const ADMIN_RESOURCE = 'Sapiha_Improvedcontact::contact';
 
     /**
-     * Save constructor.
      * @param Action\Context $context
      * @param ContactRepository $contactRepository
      */
-    public function __construct(
-        Action\Context $context,
-        ContactRepository $contactRepository
-    ) {
+    public function __construct(Action\Context $context, ContactRepository $contactRepository)
+    {
         parent::__construct($context);
 
         $this->contactRepository = $contactRepository;
@@ -34,13 +31,13 @@ class Save extends Action
      */
     public function execute()
     {
-        $contactId = $this->getRequest()->getParam('id');
+        $contactId = (int)$this->getRequest()->getParam('id');
         $isReplied = $this->getRequest()->getParam('is_replied');
-        if ($contactId && $isReplied !== null) {
+        if ($contactId !== 0 && $isReplied !== null) {
 
             try {
                 $contact = $this->contactRepository->getById((int)$contactId);
-                $contact->setIsReplied($isReplied);
+                $contact->setIsReplied((bool)$isReplied);
                 $this->contactRepository->save($contact);
                 $this->messageManager->addSuccessMessage(__('The contact message was successfully updated.'));
             } catch (\Exception $exception) {

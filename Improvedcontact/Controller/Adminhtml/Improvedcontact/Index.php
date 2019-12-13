@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Sapiha\Improvedcontact\Controller\Adminhtml\Improvedcontact;
 
@@ -9,21 +10,21 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\PageFactory;
 
+/**
+ * Class represent index action for entity
+ */
 class Index extends Action
 {
     const ADMIN_RESOURCE = 'Sapiha_Improvedcontact::contact';
 
     /**
-     * Index constructor.
      * @param Context $context
      * @param PageFactory $resultPageFactory
      */
-    public function __construct(
-        Context $context,
-        PageFactory $resultPageFactory
-    )
+    public function __construct(Context $context, PageFactory $resultPageFactory)
     {
         $this->resultPageFactory = $resultPageFactory;
+
         parent::__construct($context);
     }
 

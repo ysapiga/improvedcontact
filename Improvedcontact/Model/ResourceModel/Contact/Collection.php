@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Sapiha\Improvedcontact\Model\ResourceModel\Contact;
 
@@ -7,8 +8,7 @@ use Sapiha\Improvedcontact\Model\Contact;
 use Sapiha\Improvedcontact\Model\ResourceModel\Contact as ContactResource;
 
 /**
- * Class Collection
- * @package Sapiha\Improvedcontact\Model\ResourceModel\Contact
+ * Collection class for \Sapiha\Improvedcontact\Model\Contact entity
  */
 class Collection extends AbstractCollection
 {

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Sapiha\Improvedcontact\Controller\Adminhtml\Improvedcontact;
 
@@ -8,22 +9,18 @@ use Magento\Framework\Controller\ResultInterface;
 use Sapiha\Improvedcontact\Model\ContactRepository;
 
 /**
- * Class Edit
- * @package Sapiha\Improvedcontact\Controller\Adminhtml\Improvedcontact
+ * Class for edit entity action
  */
 class Edit extends Action
 {
     const ADMIN_RESOURCE = 'Sapiha_Improvedcontact::contact';
 
     /**
-     * Edit constructor.
      * @param Action\Context $context
      * @param ContactRepository $contactRepository
      */
-    public function __construct(
-        Action\Context $context,
-        ContactRepository $contactRepository
-    ) {
+    public function __construct(Action\Context $context, ContactRepository $contactRepository)
+    {
         parent::__construct($context);
 
         $this->contactRepository = $contactRepository;
@@ -35,11 +32,11 @@ class Edit extends Action
     public function execute()
     {
         $this->_view->loadLayout();
-        $contactId = $this->getRequest()->getParam('id');
+        $contactId = (int)$this->getRequest()->getParam('id');
         $this->_setActiveMenu('Sapiha_Improvedcontact::improvedcontact');
-        if($contactId) {
-            $contact = null;
 
+        if ($contactId !== 0) {
+            $contact = null;
             try {
                 $contact = $this->contactRepository->getById((int)$contactId);
             } catch (\Exception $exception) {
@@ -58,6 +55,7 @@ class Edit extends Action
             $this->_addContent($editBlock);
             $this->_view->renderLayout();
         } else {
+            $this->messageManager->addErrorMessage('Required id parameter missing');
             $this->_redirect('adminhtml/*/');
         }
     }

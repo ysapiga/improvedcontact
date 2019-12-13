@@ -1,42 +1,40 @@
 <?php
+declare(strict_types=1);
 
 namespace Sapiha\Improvedcontact\Controller\Adminhtml\Improvedcontact;
 
 use Magento\Backend\App\Action;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultInterface;
 use Sapiha\Improvedcontact\Model\ContactRepository;
 
 /**
- * Class Delete
- * @package Sapiha\Improvedcontact\Controller\Adminhtml\Improvedcontact
+ * Class represent delete contact action
  */
 class Delete extends Action
 {
     const ADMIN_RESOURCE = 'Sapiha_Improvedcontact::contact';
 
     /**
-     * Save constructor.
      * @param Action\Context $context
      * @param ContactRepository $contactRepository
      */
-    public function __construct(
-        Action\Context $context,
-        ContactRepository $contactRepository
-    ) {
+    public function __construct(Action\Context $context, ContactRepository $contactRepository)
+    {
         parent::__construct($context);
 
         $this->contactRepository = $contactRepository;
     }
 
     /**
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|void
+     * @return ResponseInterface|ResultInterface|void
      */
     public function execute()
     {
         $contactId = $this->getRequest()->getParam('id');
 
         try {
-            $contact = $this->contactRepository->getById((int)$contactId);
-            $this->contactRepository->delete($contact);
+            $this->contactRepository->deleteById($contactId);
             $this->messageManager->addSuccess(__('The contact message was successfully deleted.'));
         } catch (\Exception $exception) {
             $this->messageManager->addErrorMessage(__('Cannot delete entity'));

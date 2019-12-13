@@ -23,6 +23,7 @@ class Savedata
 
     /**
      * Savedata constructor.
+     *
      * @param LoggerInterface $logger
      * @param ContactRepositoryInterface $contactRepository
      * @param ContactFactory $contactFactory
@@ -44,7 +45,7 @@ class Savedata
      * @param array $variables
      * @return bool
      */
-    public function beforeSend(MailInterface $subject, $replyTo, array $variables)
+    public function beforeSend(MailInterface $subject, $replyTo, array $variables): bool
     {
         $data = $variables['data'];
         $model = $this->contactFactory->create();

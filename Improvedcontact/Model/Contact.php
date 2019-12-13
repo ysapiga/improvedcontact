@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Sapiha\Improvedcontact\Model;
 
@@ -6,6 +7,9 @@ use Magento\Framework\Model\AbstractModel;
 use Sapiha\Improvedcontact\Api\Data\ContactInterface;
 use Sapiha\Improvedcontact\Model\ResourceModel\Contact as ContactResource;
 
+/**
+ * Class represent Contact entity
+ */
 class Contact extends AbstractModel implements ContactInterface
 {
     private const EMAIL = 'email';
@@ -27,7 +31,7 @@ class Contact extends AbstractModel implements ContactInterface
      *
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->_getData(self::EMAIL);
     }
@@ -38,7 +42,7 @@ class Contact extends AbstractModel implements ContactInterface
      * @param string $email
      * @return void
      */
-    public function setEmail(string $email)
+    public function setEmail(string $email): void
     {
         $this->setData(self::EMAIL, $email);
     }
@@ -48,7 +52,7 @@ class Contact extends AbstractModel implements ContactInterface
      *
      * @return string
      */
-    public function getMessage()
+    public function getMessage(): string
     {
         return $this->_getData(self::MESSAGE);
     }
@@ -59,7 +63,7 @@ class Contact extends AbstractModel implements ContactInterface
      * @param string $message
      * @return void
      */
-    public function setMessage(string $message)
+    public function setMessage(string $message): void
     {
         $this->setData(self::MESSAGE, $message);
     }
@@ -69,7 +73,7 @@ class Contact extends AbstractModel implements ContactInterface
      *
      * @return string
      */
-    public function getPhone()
+    public function getPhone(): string
     {
         return $this->_getData(self::PHONE);
     }
@@ -80,7 +84,7 @@ class Contact extends AbstractModel implements ContactInterface
      * @param string $phone
      * @return void
      */
-    public function setPhone(string $phone)
+    public function setPhone(string $phone): void
     {
         $this->setData(self::PHONE, $phone);
     }
@@ -90,9 +94,9 @@ class Contact extends AbstractModel implements ContactInterface
      *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
-        return $this->_getData('id');
+        return (int)$this->_getData('id');
     }
 
     /**
@@ -101,14 +105,19 @@ class Contact extends AbstractModel implements ContactInterface
      * @param int $id
      * @return AbstractModel|void
      */
-    public function setId($id)
+    public function setId($id): void
     {
         $this->setData('id', $id);
     }
 
-    public function getIsReplied()
+    /**
+     * Get is replied
+     *
+     * @return bool
+     */
+    public function getIsReplied(): bool
     {
-        return $this->_getData(self::IS_REPLIED);
+        return (bool)$this->_getData(self::IS_REPLIED);
     }
 
     /**
@@ -116,7 +125,7 @@ class Contact extends AbstractModel implements ContactInterface
      *
      * @param bool $isReplied
      */
-    public function setIsReplied(bool $isReplied)
+    public function setIsReplied(bool $isReplied): void
     {
         $this->setData(self::IS_REPLIED, $isReplied);
     }
@@ -126,7 +135,7 @@ class Contact extends AbstractModel implements ContactInterface
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->_getData(self::NAME);
     }
@@ -137,7 +146,7 @@ class Contact extends AbstractModel implements ContactInterface
      * @param string $name
      * @return void
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->setData(self::NAME, $name);
     }
