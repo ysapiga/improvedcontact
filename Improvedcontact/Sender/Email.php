@@ -32,9 +32,6 @@ class Email
     /** @var TransportBuilder */
     private $transportBuilder;
 
-    /** @var string */
-    private $temp_id;
-
     /** @var SenderResolverInterface */
     private $senderResolver;
 
