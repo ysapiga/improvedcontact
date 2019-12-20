@@ -5,4 +5,17 @@
     <type name="Magento\Contact\Model\Mail">
         <plugin name="saveContactData" type="Sapiha\Improvedcontact\Plugin\Model\Savedata" />
     </type>
+    <virtualType name="Sapiha\Improvedcontact\Model\ResourceModel\Contact\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">customer_feedback</argument>
+            <argument name="resourceModel" xsi:type="string">Sapiha\Improvedcontact\Model\ResourceModel\Contact</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="improvedcontact_listing_data_source" xsi:type="string">Sapiha\Improvedcontact\Model\ResourceModel\Contact\Collection</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
