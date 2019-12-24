@@ -15,6 +15,9 @@ class Delete extends Action
 {
     const ADMIN_RESOURCE = 'Sapiha_Improvedcontact::contact';
 
+    /** @var ContactRepository  */
+    private $contactRepository;
+
     /**
      * @param Action\Context $context
      * @param ContactRepository $contactRepository
@@ -32,16 +35,19 @@ class Delete extends Action
     public function execute()
     {
         $contactId = $this->getRequest()->getParam('id');
+        $resultRedirect = $this->resultRedirectFactory->create();
 
         try {
             $this->contactRepository->deleteById($contactId);
             $this->messageManager->addSuccess(__('The contact message was successfully deleted.'));
         } catch (\Exception $exception) {
             $this->messageManager->addErrorMessage(__('Cannot delete entity'));
-            $this->_redirect('adminhtml/*/edit/', ['id' => $this->_getUrlRewrite()->getId()]);
-            return;
+
+            $resultRedirect->setPath('*/*/edit/', ['id' => $this->_getUrlRewrite()->getId()]);
         }
 
-        $this->_redirect('adminhtml/*/');
+        $resultRedirect->setPath('adminhtml/*/');
+
+        return $resultRedirect;
     }
 }

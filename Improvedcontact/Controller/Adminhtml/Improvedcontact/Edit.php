@@ -6,6 +6,7 @@ namespace Sapiha\Improvedcontact\Controller\Adminhtml\Improvedcontact;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\View\Result\PageFactory;
 use Sapiha\Improvedcontact\Model\ContactRepository;
 
 /**
@@ -15,15 +16,26 @@ class Edit extends Action
 {
     const ADMIN_RESOURCE = 'Sapiha_Improvedcontact::contact';
 
+    /** @var ContactRepository  */
+    private $contactRepository;
+
+    /** @var PageFactory  */
+    private $resultPageFactory;
+
     /**
      * @param Action\Context $context
      * @param ContactRepository $contactRepository
+     * @param PageFactory $resultPageFactory
      */
-    public function __construct(Action\Context $context, ContactRepository $contactRepository)
-    {
+    public function __construct(
+        Action\Context $context,
+        ContactRepository $contactRepository,
+        PageFactory $resultPageFactory
+    ) {
         parent::__construct($context);
 
         $this->contactRepository = $contactRepository;
+        $this->resultPageFactory = $resultPageFactory;
     }
 
     /**
@@ -31,32 +43,26 @@ class Edit extends Action
      */
     public function execute()
     {
-        $this->_view->loadLayout();
         $contactId = (int)$this->getRequest()->getParam('id');
-        $this->_setActiveMenu('Sapiha_Improvedcontact::improvedcontact');
+        $resultRedirect = $this->resultRedirectFactory->create();
 
         if ($contactId !== 0) {
             $contact = null;
             try {
-                $contact = $this->contactRepository->getById((int)$contactId);
+                $this->contactRepository->getById($contactId);
             } catch (\Exception $exception) {
                 $this->messageManager->addErrorMessage(__('Cannot load entity'));
-                $this->_redirect('adminhtml/*/');
-                return;
+                $resultRedirect->setPath('*/*/');
+                return $resultRedirect;
             }
+            $resultPage = $this->resultPageFactory->create();
+            $resultPage->setActiveMenu('Sapiha_Improvedcontact::improvedcontact');
 
-            $editBlock = $this->_view->getLayout()->createBlock(
-                \Sapiha\Improvedcontact\Block\Edit::class,
-                'edit.contact',
-                ['data' => ['contact' => $contact ?: null]]
-            );
-            $this->_view->getLayout()->getBlock('adminhtml.block.improvedcontact.reply')
-                ->setData('contact', $contact);
-            $this->_addContent($editBlock);
-            $this->_view->renderLayout();
+            return $resultPage;
         } else {
             $this->messageManager->addErrorMessage('Required id parameter missing');
-            $this->_redirect('adminhtml/*/');
+
+            return $resultRedirect->setPath('*/*/');
         }
     }
 }

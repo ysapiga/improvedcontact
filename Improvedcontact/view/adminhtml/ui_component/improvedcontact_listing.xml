@@ -18,10 +18,10 @@
             </storageConfig>
             <updateUrl path="mui/index/render"/>
         </settings>
-        <aclResource>Magento_Cms::block</aclResource>
+        <aclResource>Sapiha_Improvedcontact::contact</aclResource>
         <dataProvider class=" Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="improvedcontact_listing_data_source">
             <settings>
-                <requestFieldName>entity_id</requestFieldName>
+                <requestFieldName>id</requestFieldName>
                 <primaryFieldName>id</primaryFieldName>
             </settings>
         </dataProvider>

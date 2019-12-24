@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Sapiha\Improvedcontact\Sender;
 
-use Magento\Framework\App\Area as Area;
+use Magento\Framework\App\Area;
 use Magento\Framework\Mail\Template\SenderResolverInterface;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Framework\Translate\Inline\StateInterface;

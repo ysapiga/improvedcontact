@@ -8,7 +8,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\StateException;
 use Sapiha\Improvedcontact\Api\ContactRepositoryInterface;
 use Sapiha\Improvedcontact\Api\Data\ContactInterface;
-use Sapiha\Improvedcontact\Model\ResourceModel\Contact as ContactResource;
+use Sapiha\Improvedcontact\Model\ResourceModel\ContactFactory as ContactResourceFactory;
 
 class ContactRepository implements ContactRepositoryInterface
 {
@@ -19,10 +19,10 @@ class ContactRepository implements ContactRepositoryInterface
     private $contactResourceFactory;
 
     /**
-     * @param ContactResource $contactResourceFactory
+     * @param ContactResourceFactory $contactResourceFactory
      * @param ContactFactory $contactFactory
      */
-    public function __construct(ContactResource $contactResourceFactory, ContactFactory $contactFactory)
+    public function __construct(ContactResourceFactory $contactResourceFactory, ContactFactory $contactFactory)
     {
         $this->contactFactory = $contactFactory;
         $this->contactResourceFactory = $contactResourceFactory;
