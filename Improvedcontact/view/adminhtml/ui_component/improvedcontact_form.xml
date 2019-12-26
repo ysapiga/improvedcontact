@@ -10,6 +10,7 @@
     <settings>
         <buttons>
             <button name="save" class="Sapiha\Improvedcontact\Ui\Component\Form\Buttons\SaveButton"/>
+            <button name="delete" class="Sapiha\Improvedcontact\Ui\Component\Form\Buttons\DeleteButton"/>
             <button name="back" class="Sapiha\Improvedcontact\Ui\Component\Form\Buttons\BackButton"/>
         </buttons>
         <namespace>improvedcontact_form</namespace>

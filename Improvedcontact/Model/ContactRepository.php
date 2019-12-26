@@ -8,8 +8,12 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\StateException;
 use Sapiha\Improvedcontact\Api\ContactRepositoryInterface;
 use Sapiha\Improvedcontact\Api\Data\ContactInterface;
+use Sapiha\Improvedcontact\Model\ResourceModel\Contact as ContactResource;
 use Sapiha\Improvedcontact\Model\ResourceModel\ContactFactory as ContactResourceFactory;
 
+/**
+ * Repository class for contact entity
+ */
 class ContactRepository implements ContactRepositoryInterface
 {
     /** @var ContactFactory */
@@ -81,5 +85,23 @@ class ContactRepository implements ContactRepositoryInterface
     {
         $contact = $this->getById($id);
         $this->delete($contact);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function updateIsReplied(int $id, bool $isReplied): bool
+    {
+        $contact = $this->getById($id);
+        $result = true;
+
+        try {
+            $contact->setIsReplied($isReplied);
+            $this->save($contact);
+        } catch (\Exception $e) {
+            $result = false;
+        }
+
+        return $result;
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/improvedcontact/contact/:id" method="POST">
+        <service class="Sapiha\Improvedcontact\Api\ContactRepositoryInterface"
+                 method="updateIsReplied"/>
+        <resources>
+            <resource ref="anonymous"/> <!-- such resource set for easier testing (should be set Sapiha_Improvedcontact::improvedcontact) -->
+        </resources>
+    </route>
+    <route url="/V1/improvedcontact/contact/:id" method="DELETE">
+        <service class="Sapiha\Improvedcontact\Api\ContactRepositoryInterface"
+                 method="deleteById"/>
+        <resources>
+            <resource ref="anonymous"/> <!-- such resource set for easier testing (should be set Sapiha_Improvedcontact::improvedcontact) -->
+        </resources>
+    </route>
+    <route url="/V1/improvedcontact/contact/:id" method="GET">
+        <service class="Sapiha\Improvedcontact\Api\ContactRepositoryInterface"
+                 method="getById"/>
+        <resources>
+            <resource ref="anonymous"/> <!-- such resource set for easier testing (should be set Sapiha_Improvedcontact::improvedcontact) -->
+        </resources>
+    </route>
+</routes>

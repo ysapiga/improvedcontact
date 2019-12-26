@@ -34,19 +34,25 @@ class Delete extends Action
      */
     public function execute()
     {
-        $contactId = $this->getRequest()->getParam('id');
+        $contactId = (int)$this->getRequest()->getParam('id');
         $resultRedirect = $this->resultRedirectFactory->create();
 
-        try {
-            $this->contactRepository->deleteById($contactId);
-            $this->messageManager->addSuccess(__('The contact message was successfully deleted.'));
-        } catch (\Exception $exception) {
-            $this->messageManager->addErrorMessage(__('Cannot delete entity'));
+        if ($contactId > 0) {
 
+            try {
+                $this->contactRepository->deleteById($contactId);
+                $this->messageManager->addSuccess(__('The contact message was successfully deleted.'));
+            } catch (\Exception $exception) {
+                $this->messageManager->addErrorMessage(__('Cannot delete entity'));
+
+                $resultRedirect->setPath('*/*/edit/', ['id' => $this->_getUrlRewrite()->getId()]);
+            }
+        } else {
+            $this->messageManager->addErrorMessage(__('Required parameter missing'));
             $resultRedirect->setPath('*/*/edit/', ['id' => $this->_getUrlRewrite()->getId()]);
         }
 
-        $resultRedirect->setPath('adminhtml/*/');
+        $resultRedirect->setPath('*/*/');
 
         return $resultRedirect;
     }

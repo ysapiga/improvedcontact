@@ -43,9 +43,9 @@ class Savedata
      *
      * @param $replyTo
      * @param array $variables
-     * @return bool
+     * @return array
      */
-    public function beforeSend(MailInterface $subject, $replyTo, array $variables): bool
+    public function beforeSend(MailInterface $subject, $replyTo, array $variables)
     {
         $data = $variables['data'];
         $model = $this->contactFactory->create();

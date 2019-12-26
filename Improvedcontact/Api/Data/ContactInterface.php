@@ -9,9 +9,9 @@ namespace Sapiha\Improvedcontact\Api\Data;
 interface ContactInterface
 {
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int;
+    public function getId();
 
     /**
      * @param int $id

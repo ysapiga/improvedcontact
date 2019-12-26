@@ -92,11 +92,11 @@ class Contact extends AbstractModel implements ContactInterface
     /**
      * Set id
      *
-     * @return int
+     * @return string|int|null
      */
-    public function getId(): int
+    public function getId()
     {
-        return (int)$this->_getData('id');
+        return $this->_getData('id');
     }
 
     /**

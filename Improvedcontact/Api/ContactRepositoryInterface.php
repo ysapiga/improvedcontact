@@ -15,7 +15,7 @@ interface ContactRepositoryInterface
      * Get entity by id
      *
      * @param int $id
-     * @return ContactInterface
+     * @return \Sapiha\Improvedcontact\Api\Data\ContactInterface
      * @throws NoSuchEntityException
      */
     public function getById(int $id): ContactInterface;
@@ -23,15 +23,15 @@ interface ContactRepositoryInterface
     /**
      * Save entity
      *
-     * @param ContactInterface $contact
-     * @return ContactInterface
+     * @param \Sapiha\Improvedcontact\Api\Data\ContactInterface $contact
+     * @return \Sapiha\Improvedcontact\Api\Data\ContactInterface
      */
     public function save(ContactInterface $contact): ContactInterface;
 
     /**
      * Delete entity
      *
-     * @param ContactInterface $contact
+     * @param \Sapiha\Improvedcontact\Api\Data\ContactInterface $contact
      * @return void
      */
     public function delete(ContactInterface $contact): void;
@@ -43,4 +43,11 @@ interface ContactRepositoryInterface
      * @return void
      */
     public function deleteById(int $id): void;
+
+    /**
+     * @param int $id
+     * @param bool $isReplied
+     * @return bool
+     */
+    public function updateIsReplied(int $id, bool $isReplied): bool;
 }
